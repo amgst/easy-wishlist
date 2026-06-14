@@ -2,7 +2,7 @@
 
 client_id = "389cfda8f442aa734d71959d02934e57"
 name = "Easy Wishlist"
-application_url = "https://example.com"
+application_url = "https://easy-wishlist-azure.vercel.app"
 embedded = true
 
 [access_scopes]
@@ -13,7 +13,7 @@ scopes = "read_products,write_customers"
 # App proxy — storefront requests to {shop}/apps/wishlist/... route here.
 # Used by wishlist.js to sync localStorage → customer metafield on login.
 [app_proxy]
-url = "https://example.com/apps/wishlist"
+url = "https://easy-wishlist-azure.vercel.app/apps/wishlist"
 subpath = "wishlist"
 prefix = "apps"
 
@@ -29,14 +29,8 @@ api_version = "2026-07"
   topics = [ "app/scopes_update" ]
 
 
-# GDPR / Privacy compliance — required for App Store submission
-[privacy_compliance]
-customer_deletion_url = "/webhooks/customers/redact"
-customer_data_request_url = "/webhooks/customers/data_request"
-shop_deletion_url = "/webhooks/shop/redact"
-
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://easy-wishlist-azure.vercel.app/api/auth" ]
 
 [build]
 include_config_on_deploy = true

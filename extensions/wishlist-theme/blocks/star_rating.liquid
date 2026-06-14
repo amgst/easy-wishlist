@@ -1,0 +1,41 @@
+{{ 'wishlist.css' | asset_url | stylesheet_tag }}
+
+{%- if block.settings.show_floating_button -%}
+  <div class="wbify-floating-btn" id="wbify-floating-btn">
+    <a
+      href="{{ block.settings.wishlist_page_url | default: '/pages/wishlist' }}"
+      class="wbify-floating-link"
+      aria-label="View wishlist"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      <span data-wishlist-count style="display:none">0</span>
+    </a>
+  </div>
+{%- endif -%}
+
+<script src="{{ 'wishlist.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Wishlist",
+  "target": "body",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_floating_button",
+      "label": "Show floating wishlist button",
+      "default": true,
+      "info": "Displays a heart icon button fixed to the bottom-right corner of every page."
+    },
+    {
+      "type": "url",
+      "id": "wishlist_page_url",
+      "label": "Wishlist page URL",
+      "info": "Link the floating button to your /pages/wishlist page."
+    }
+  ]
+}
+{% endschema %}
+

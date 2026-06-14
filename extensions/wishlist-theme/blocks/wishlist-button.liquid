@@ -1,0 +1,118 @@
+{%- liquid
+  if block.settings.product != blank
+    assign wl_product = block.settings.product
+  elsif product != blank
+    assign wl_product = product
+  endif
+  assign btn_color   = block.settings.button_color
+  assign active_color = block.settings.active_color | default: '#ef4444'
+-%}
+
+{%- if wl_product != blank -%}
+  {{ 'wishlist.css' | asset_url | stylesheet_tag }}
+
+  {%- if btn_color != blank -%}
+  <style>
+    .wbify-wishlist-btn[data-wishlist-block="{{ block.id }}"] {
+      border-color: {{ btn_color }};
+      color: {{ btn_color }};
+    }
+    .wbify-wishlist-btn[data-wishlist-block="{{ block.id }}"]:hover {
+      background: {{ btn_color }}0d;
+    }
+    .wbify-wishlist-btn[data-wishlist-block="{{ block.id }}"].wbify-wishlisted {
+      background: {{ active_color }}1a;
+      border-color: {{ active_color }};
+      color: {{ active_color }};
+    }
+    .wbify-wishlist-btn[data-wishlist-block="{{ block.id }}"].wbify-wishlisted .wbify-heart svg {
+      fill: {{ active_color }};
+      stroke: {{ active_color }};
+    }
+  </style>
+  {%- endif -%}
+
+  <button
+    class="wbify-wishlist-btn"
+    data-wishlist-btn
+    data-wishlist-block="{{ block.id }}"
+    data-product-id="{{ wl_product.id }}"
+    data-product-handle="{{ wl_product.handle }}"
+    data-product-title="{{ wl_product.title | escape }}"
+    data-product-price="{{ wl_product.price_min }}"
+    data-product-compare="{{ wl_product.compare_at_price_min | default: 0 }}"
+    data-product-image="{{ wl_product.featured_image | image_url: width: 600 }}"
+    data-product-available="{{ wl_product.available }}"
+    data-product-url="{{ wl_product.url }}"
+    data-product-variant-id="{{ wl_product.selected_or_first_available_variant.id }}"
+    data-add-text="{{ block.settings.add_text | escape }}"
+    data-remove-text="{{ block.settings.remove_text | escape }}"
+    aria-label="{{ block.settings.add_text | escape }}"
+    aria-pressed="false"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.show_icon -%}
+      <span class="wbify-heart" data-wishlist-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </span>
+    {%- endif -%}
+    <span data-wishlist-label>{{ block.settings.add_text }}</span>
+  </button>
+
+  <script src="{{ 'wishlist.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Wishlist Button",
+  "target": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "autofill": true
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "add_text",
+      "label": "Add to Wishlist label",
+      "default": "Add to Wishlist"
+    },
+    {
+      "type": "text",
+      "id": "remove_text",
+      "label": "Remove from Wishlist label",
+      "default": "Remove from Wishlist"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show heart icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "info": "Leave blank to inherit the theme color."
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active (wishlisted) color",
+      "default": "#ef4444"
+    }
+  ]
+}
+{% endschema %}

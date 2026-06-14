@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+// LOCAL DEV: set DATABASE_URL="file:dev.sqlite" in .env and keep provider = "sqlite"
+// VERCEL:    set DATABASE_URL to your Vercel Postgres connection string and change provider to "postgresql"
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model WishlistReminder {
+  id        String    @id @default(cuid())
+  shop      String
+  email     String
+  items     String    // JSON array of wishlist product snapshots
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@unique([shop, email])
+  @@index([shop, sentAt])
+}
+
+model Settings {
+  id              String  @id @default(cuid())
+  shop            String  @unique
+  reminderDays    Int     @default(7)
+  reminderEnabled Boolean @default(true)
+  senderName      String  @default("Your Store")
+  emailSubject    String  @default("You left something behind ♥")
+  replyTo         String  @default("")
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}

@@ -1,0 +1,15 @@
+{
+  "wishlist": {
+    "heading": "Ma liste de souhaits",
+    "count_one": "{{count}} article enregistré",
+    "count_other": "{{count}} articles enregistrés",
+    "empty": "Votre liste de souhaits est vide.",
+    "browse": "Commencer les achats",
+    "remove": "Supprimer",
+    "view_product": "Voir le produit",
+    "sold_out": "Épuisé",
+    "save_error": "Impossible de mettre à jour la liste. Veuillez réessayer.",
+    "order_status_prompt": "Vous avez des articles enregistrés dans votre liste de souhaits.",
+    "order_status_cta": "Voir la liste"
+  }
+}

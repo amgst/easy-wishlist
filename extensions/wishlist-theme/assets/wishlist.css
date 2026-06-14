@@ -1,0 +1,197 @@
+/* ============================================================
+   Wbify Wishlist — Storefront Styles
+   ============================================================ */
+
+/* ----- Spin animation (for spinner SVG) ----- */
+@keyframes wbify-spin { to { transform: rotate(360deg); } }
+.wbify-spin { animation: wbify-spin 0.7s linear infinite; display: inline-block; vertical-align: middle; }
+
+/* ----- Wishlist Button (product page) ----- */
+.wbify-wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid currentColor;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  color: inherit;
+  line-height: 1.4;
+}
+.wbify-wishlist-btn:hover { background: rgba(0,0,0,0.05); }
+.wbify-wishlist-btn.wbify-wishlisted {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* ----- Heart icon ----- */
+.wbify-heart { display: inline-flex; flex-shrink: 0; }
+.wbify-heart svg { fill: none; stroke: currentColor; stroke-width: 2; transition: fill 0.2s, stroke 0.2s; }
+.wbify-heart.wbify-wishlisted svg,
+.wbify-wishlist-btn.wbify-wishlisted .wbify-heart svg { fill: #ef4444; stroke: #ef4444; }
+
+/* ----- Count badge ----- */
+[data-wishlist-count] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 9999px;
+  min-width: 18px;
+  height: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 5px;
+  line-height: 1;
+}
+
+/* ----- Floating button (app embed) ----- */
+.wbify-floating-btn { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+.wbify-floating-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  background: #ef4444; color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  text-decoration: none; position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wbify-floating-link:hover { transform: scale(1.08); box-shadow: 0 6px 18px rgba(0,0,0,.3); }
+.wbify-floating-link svg { width: 22px; height: 22px; fill: #fff; stroke: #fff; }
+.wbify-floating-link [data-wishlist-count] { position: absolute; top: -4px; right: -4px; background: #111; }
+
+/* ----- Wishlist page wrapper ----- */
+.wbify-page { padding: 24px 0; }
+.wbify-page__header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+}
+.wbify-page__heading { margin: 0; font-size: 1.75rem; font-weight: 700; }
+.wbify-page__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ----- Product grid ----- */
+.wbify-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+@media (max-width: 480px) { .wbify-grid { grid-template-columns: repeat(2,1fr); gap: 12px; } }
+
+/* ----- Product card ----- */
+.wbify-card {
+  border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;
+  display: flex; flex-direction: column; background: #fff;
+  transition: box-shadow 0.2s;
+}
+.wbify-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.wbify-card__image { aspect-ratio: 1/1; overflow: hidden; background: #f9fafb; }
+.wbify-card__image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.wbify-card__image:hover img { transform: scale(1.04); }
+.wbify-card__no-image { width: 100%; height: 100%; background: #f3f4f6; }
+.wbify-card__info { padding: 12px; flex: 1; }
+.wbify-card__title { font-size: .9rem; margin: 0 0 8px; font-weight: 500; line-height: 1.3; }
+.wbify-card__title a { color: inherit; text-decoration: none; }
+.wbify-card__title a:hover { text-decoration: underline; }
+.wbify-card__pricing { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.wbify-card__price { font-weight: 600; font-size: .95rem; }
+.wbify-card__compare { color: #9ca3af; font-size: .8rem; }
+.wbify-card__badge { display: inline-block; margin-top: 8px; font-size: .7rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .04em; }
+.wbify-card__badge--sold-out { background: #fee2e2; color: #991b1b; }
+.wbify-card__actions { padding: 10px 12px; border-top: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 8px; }
+
+/* ----- All buttons ----- */
+.wbify-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 16px; border-radius: 4px;
+  font-size: .875rem; font-family: inherit; font-weight: 500;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s; border: 1px solid transparent;
+  width: 100%; text-align: center; line-height: 1.4;
+}
+.wbify-btn--primary { background: #111827; color: #fff; border-color: #111827; }
+.wbify-btn--primary:hover { background: #374151; border-color: #374151; }
+.wbify-btn--primary:disabled { opacity: .6; cursor: not-allowed; }
+.wbify-btn--cart { background: #111827; color: #fff; border-color: #111827; }
+.wbify-btn--cart:hover { background: #374151; border-color: #374151; }
+.wbify-btn--cart:disabled { opacity: .6; cursor: not-allowed; }
+.wbify-btn--added { background: #16a34a !important; border-color: #16a34a !important; color: #fff !important; }
+.wbify-btn--outline { background: transparent; border-color: #e5e7eb; color: #374151; }
+.wbify-btn--outline:hover { border-color: #111827; }
+.wbify-btn--remove { background: transparent; color: #6b7280; border-color: #e5e7eb; }
+.wbify-btn--remove:hover { border-color: #ef4444; color: #ef4444; }
+.wbify-btn--ghost { background: transparent; border-color: #e5e7eb; color: #6b7280; width: auto; }
+.wbify-btn--ghost:hover { border-color: #374151; color: #374151; }
+
+/* ----- States ----- */
+.wbify-empty { text-align: center; padding: 56px 24px; color: #6b7280; font-size: 1rem; }
+.wbify-loading-state { text-align: center; padding: 56px 24px; color: #9ca3af; font-size: .95rem; }
+
+/* ----- Share section ----- */
+.wbify-share {
+  margin-top: 40px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+.wbify-share__title { margin: 0 0 16px; font-weight: 600; font-size: 1rem; }
+.wbify-share__buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.wbify-share-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: 4px;
+  font-size: .8rem; font-family: inherit; font-weight: 500;
+  cursor: pointer; border: 1px solid transparent;
+  transition: opacity 0.15s, transform 0.15s;
+  color: #fff;
+}
+.wbify-share-btn:hover { opacity: .88; transform: translateY(-1px); }
+.wbify-share-btn--facebook { background: #1877f2; }
+.wbify-share-btn--whatsapp { background: #25d366; }
+.wbify-share-btn--twitter  { background: #000; }
+.wbify-share-btn--copy     { background: #6b7280; }
+.wbify-share-btn--copied   { background: #16a34a !important; }
+.wbify-share__url-row { display: flex; gap: 8px; align-items: center; }
+.wbify-share__url-input {
+  flex: 1; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px;
+  font-size: .8rem; color: #374151; background: #fff; font-family: inherit;
+  min-width: 0;
+}
+.wbify-share__url-input:focus { outline: none; border-color: #6b7280; }
+
+/* ----- Email reminder section ----- */
+.wbify-email-reminder {
+  margin-top: 32px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fffbeb;
+}
+.wbify-email-reminder__inner { display: flex; gap: 16px; align-items: flex-start; }
+.wbify-email-reminder__icon { font-size: 2rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.wbify-email-reminder__heading { margin: 0 0 4px; font-weight: 600; font-size: 1rem; }
+.wbify-email-reminder__desc { margin: 0 0 14px; font-size: .875rem; color: #6b7280; }
+.wbify-email-form { display: flex; gap: 8px; flex-wrap: wrap; }
+.wbify-email-input {
+  flex: 1; min-width: 200px; padding: 9px 14px;
+  border: 1px solid #d1d5db; border-radius: 4px;
+  font-size: .875rem; font-family: inherit;
+}
+.wbify-email-input:focus { outline: none; border-color: #111827; }
+.wbify-email-submit { width: auto; flex-shrink: 0; }
+.wbify-email-success {
+  display: flex; align-items: center; gap: 6px;
+  color: #16a34a; font-size: .875rem; font-weight: 500; margin: 8px 0 0;
+}
+.wbify-email-error { color: #dc2626; font-size: .8rem; margin: 8px 0 0; }
+@media (max-width: 480px) {
+  .wbify-email-reminder__inner { flex-direction: column; }
+  .wbify-email-form { flex-direction: column; }
+  .wbify-email-input, .wbify-email-submit { width: 100%; }
+}

@@ -1,0 +1,11 @@
+{
+  "wishlist": {
+    "add": "Add to Wishlist",
+    "remove": "Remove from Wishlist",
+    "empty": "Your wishlist is empty. Start adding products you love!",
+    "clear": "Clear Wishlist",
+    "loading": "Loading your wishlist…",
+    "view_product": "View Product",
+    "sold_out": "Sold out"
+  }
+}

@@ -1,0 +1,21 @@
+# Customer Account UI Extension — Wbify Wishlist
+# https://shopify.dev/api/customer-account-ui-extensions
+
+api_version = "2026-04"
+
+[[extensions]]
+name = "wishlist-account"
+handle = "wishlist-account"
+type = "ui_extension"
+uid = "49fbf063-23ab-1a5a-527d-9698a2662dc23fb8d2b1"
+
+# Wishlist page — appears as "Wishlist" in the customer account navigation.
+# customer-account.page.render cannot be combined with any other targets.
+[[extensions.targeting]]
+module = "./src/WishlistPage.jsx"
+target = "customer-account.page.render"
+
+[extensions.capabilities]
+# Grants access to the Customer Account Storefront API for reading/writing
+# customer metafields that store the wishlist.
+api_access = true

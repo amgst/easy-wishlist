@@ -1,0 +1,15 @@
+{
+  "wishlist": {
+    "heading": "My Wishlist",
+    "count_one": "{{count}} item saved",
+    "count_other": "{{count}} items saved",
+    "empty": "Your wishlist is empty.",
+    "browse": "Start shopping",
+    "remove": "Remove",
+    "view_product": "View Product",
+    "sold_out": "Sold out",
+    "save_error": "Could not update wishlist. Please try again.",
+    "order_status_prompt": "You have items saved in your wishlist.",
+    "order_status_cta": "View Wishlist"
+  }
+}

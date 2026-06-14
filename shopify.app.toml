@@ -1,0 +1,43 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "389cfda8f442aa734d71959d02934e57"
+name = "Easy Wishlist"
+application_url = "https://example.com"
+embedded = true
+
+[access_scopes]
+# write_customers is needed to update customer metafields via the app proxy
+# when syncing a logged-in customer's localStorage wishlist to the server.
+scopes = "read_products,write_customers"
+
+# App proxy — storefront requests to {shop}/apps/wishlist/... route here.
+# Used by wishlist.js to sync localStorage → customer metafield on login.
+[app_proxy]
+url = "https://example.com/apps/wishlist"
+subpath = "wishlist"
+prefix = "apps"
+
+[webhooks]
+api_version = "2026-07"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+
+# GDPR / Privacy compliance — required for App Store submission
+[privacy_compliance]
+customer_deletion_url = "/webhooks/customers/redact"
+customer_data_request_url = "/webhooks/customers/data_request"
+shop_deletion_url = "/webhooks/shop/redact"
+
+[auth]
+redirect_urls = [ "https://example.com/api/auth" ]
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true

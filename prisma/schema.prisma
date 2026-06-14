@@ -11,7 +11,7 @@ generator client {
 // LOCAL DEV: set DATABASE_URL="file:dev.sqlite" in .env and keep provider = "sqlite"
 // VERCEL:    set DATABASE_URL to your Vercel Postgres connection string and change provider to "postgresql"
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

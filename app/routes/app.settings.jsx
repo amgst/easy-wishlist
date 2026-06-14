@@ -56,6 +56,7 @@ export default function SettingsPage() {
   return (
     <s-page heading="Wishlist Settings">
       <fetcher.Form method="POST">
+        <s-layout>
 
         {/* Email Reminders */}
         <s-section heading="Email Reminders">
@@ -134,6 +135,7 @@ export default function SettingsPage() {
           </s-button>
         </s-section>
 
+        </s-layout>
       </fetcher.Form>
     </s-page>
   );
